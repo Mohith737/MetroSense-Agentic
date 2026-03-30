@@ -610,7 +610,7 @@ class _CaptureMessageClient:
 @pytest.mark.asyncio
 async def test_get_chat_response_persists_and_commits(monkeypatch: pytest.MonkeyPatch) -> None:
     settings = Settings(
-        agent_internal_token="test-token",
+        agent_internal_token=see .env file
         agent_server_url="http://agent.local",
     )
     db_session = AsyncMock()
@@ -670,7 +670,7 @@ async def test_get_chat_response_returns_when_persistence_fails(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     settings = Settings(
-        agent_internal_token="test-token",
+        agent_internal_token=see .env file
         agent_server_url="http://agent.local",
     )
     db_session = AsyncMock()
@@ -711,7 +711,7 @@ async def test_get_chat_response_retries_once_on_input_token_limit(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     settings = Settings(
-        agent_internal_token="test-token",
+        agent_internal_token=see .env file
         agent_server_url="http://agent.local",
     )
     db_session = AsyncMock()
@@ -752,7 +752,7 @@ async def test_get_chat_response_injects_runtime_context(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     settings = Settings(
-        agent_internal_token="test-token",
+        agent_internal_token=see .env file
         agent_server_url="http://agent.local",
     )
     db_session = AsyncMock()
@@ -782,3 +782,5 @@ async def test_get_chat_response_injects_runtime_context(
     assert "[MetroSense Runtime Context]" in captured
     assert '"generated_at":"2026-03-11T00:00:00+00:00"' in captured
     assert "[User Message]\nshow me Bellandur flood risk" in captured
+
+

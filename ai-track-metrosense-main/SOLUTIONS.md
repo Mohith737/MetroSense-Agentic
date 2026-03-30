@@ -1159,7 +1159,7 @@ if await session_owner_id(db_session, payload.session_id) != current_user.id:
 - Header: `X-Internal-Token: <AGENT_INTERNAL_TOKEN>`
 - Checked in proxy (`app/proxy.py`):
   ```python
-  token = request.headers.get("X-Internal-Token")
+  token=see .env file
   if not token or token != settings.agent_internal_token:
       raise HTTPException(status_code=401, detail="Unauthorized")
   ```
@@ -1191,15 +1191,15 @@ async def get_sessions(current_user: User, ...):
 **Required Environment Variables**:
 ```bash
 # Backend
-DATABASE_URL=postgresql+asyncpg://user:pass@localhost:5432/metrosense
-SECRET_KEY=<random secret for JWT signing>
-AGENT_INTERNAL_TOKEN=<shared secret with agents>
+DATABASE_URL=see .env file
+SECRET_KEY=see .env file
+AGENT_INTERNAL_TOKEN=see .env file
 AGENT_INTERNAL_URL=http://localhost:8020
 
 # Agents
 BACKEND_INTERNAL_URL=http://localhost:8010
-AGENT_INTERNAL_TOKEN=<same as backend's AGENT_INTERNAL_TOKEN>
-GOOGLE_API_KEY=<Gemini API key>
+AGENT_INTERNAL_TOKEN=see .env file
+GOOGLE_API_KEY=see .env file
 DOCUMENTS_PATH=/path/to/Documents_Metrosense
 ```
 
@@ -1231,10 +1231,10 @@ docker-compose up -d db
 **Terminal 2 — Backend**:
 ```bash
 cd server
-export AGENT_INTERNAL_TOKEN=dev-internal-token
-export DATABASE_URL=postgresql+asyncpg://metrosense:secret@localhost:5432/metrosense
+export AGENT_INTERNAL_TOKEN=see .env file
+export DATABASE_URL=see .env file
 export AGENT_INTERNAL_URL=http://localhost:8020
-export SECRET_KEY=dev-secret-change-in-prod
+export SECRET_KEY=see .env file
 
 uv sync --all-extras
 uv run alembic upgrade head
@@ -1245,9 +1245,9 @@ uv run uvicorn app.main:app --reload --port 8010
 **Terminal 3 — Agent API Server**:
 ```bash
 cd agents
-export AGENT_INTERNAL_TOKEN=dev-internal-token
+export AGENT_INTERNAL_TOKEN=see .env file
 export BACKEND_INTERNAL_URL=http://localhost:8010
-export GOOGLE_API_KEY=<your-key>
+export GOOGLE_API_KEY=see .env file
 export DOCUMENTS_PATH=/home/dell/ai-track-metrosense/Documents_Metrosense
 
 uv sync
@@ -1258,7 +1258,7 @@ uv run adk api_server --host 0.0.0.0 --port 8021
 **Terminal 4 — Agent Proxy**:
 ```bash
 cd agents
-export AGENT_INTERNAL_TOKEN=dev-internal-token
+export AGENT_INTERNAL_TOKEN=see .env file
 
 uv sync
 uv run uvicorn app.proxy:app --host 0.0.0.0 --port 8020
@@ -1332,7 +1332,7 @@ services:
 
 **Run**:
 ```bash
-export GOOGLE_API_KEY=<your-key>
+export GOOGLE_API_KEY=see .env file
 docker-compose up
 ```
 
@@ -1544,16 +1544,16 @@ jobs:
 
 ```bash
 # Backend (.env)
-DATABASE_URL=postgresql+asyncpg://metrosense:secret@localhost:5432/metrosense
-SECRET_KEY=dev-secret-key-change-in-prod
-AGENT_INTERNAL_TOKEN=dev-internal-token
+DATABASE_URL=see .env file
+SECRET_KEY=see .env file
+AGENT_INTERNAL_TOKEN=see .env file
 AGENT_INTERNAL_URL=http://localhost:8020
 ENVIRONMENT=development
 
 # Agents (.env)
 BACKEND_INTERNAL_URL=http://localhost:8010
-AGENT_INTERNAL_TOKEN=dev-internal-token
-GOOGLE_API_KEY=<google-gemini-api-key>
+AGENT_INTERNAL_TOKEN=see .env file
+GOOGLE_API_KEY=see .env file
 DOCUMENTS_PATH=/home/dell/ai-track-metrosense/Documents_Metrosense
 LOG_LEVEL=DEBUG
 ```
@@ -1629,3 +1629,5 @@ GET    /internal/documents/{id}/{section}
 **Last Updated**: March 12, 2026
 **Maintained By**: MetroSense Engineering
 **Next Review**: June 2026
+
+

@@ -23,7 +23,7 @@ async def require_user(
     session: AsyncSession = Depends(db_session),
     app_settings: Settings = Depends(settings),
 ) -> User:
-    token = request.cookies.get(app_settings.auth_cookie_name)
+    token=see .env file
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
 
@@ -49,3 +49,5 @@ async def require_user(
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
     return user
+
+

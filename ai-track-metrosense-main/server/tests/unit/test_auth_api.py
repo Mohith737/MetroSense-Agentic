@@ -17,7 +17,7 @@ def auth_override() -> Generator[None, None, None]:
     app.dependency_overrides[require_user] = lambda: User(
         id=1,
         email="test@example.com",
-        password_hash="x",
+        password_hash=see .env file
     )
     yield
     app.dependency_overrides.pop(require_user, None)
@@ -95,3 +95,5 @@ async def test_logout_clears_cookie(client: AsyncClient, auth_override: None) ->
     assert response.status_code == 204
     settings = get_settings()
     assert settings.auth_cookie_name in response.headers.get("set-cookie", "")
+
+

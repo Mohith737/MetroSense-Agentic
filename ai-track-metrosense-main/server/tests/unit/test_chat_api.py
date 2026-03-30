@@ -17,7 +17,7 @@ def auth_override() -> Generator[None, None, None]:
     app.dependency_overrides[require_user] = lambda: User(
         id=1,
         email="test@example.com",
-        password_hash="x",
+        password_hash=see .env file
     )
     yield
     app.dependency_overrides.pop(require_user, None)
@@ -254,3 +254,5 @@ async def test_get_chat_session_returns_not_found_for_missing(
 
     response = await client.get("/api/chat/sessions/missing")
     assert response.status_code == 404
+
+

@@ -20,7 +20,7 @@ CHAT_TIMEOUT_SECONDS = 600.0
 
 
 def _auth_headers(settings: Settings) -> dict[str, str]:
-    token = settings.agent_internal_token.strip()
+    token=see .env file
     if not token:
         raise ValueError("AGENT_INTERNAL_TOKEN must be set for agent requests")
     return {"X-Internal-Token": token}
@@ -1057,3 +1057,5 @@ async def get_agent_health(settings: Settings) -> dict[str, str]:
         response.raise_for_status()
 
     return {"backend": "ok", "agent": "ok", "status": "online"}
+
+

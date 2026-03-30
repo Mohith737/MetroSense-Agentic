@@ -12,7 +12,7 @@ from fastapi import FastAPI, Header, HTTPException, Request, Response
 load_dotenv()
 
 ADK_BASE_URL = os.getenv("ADK_BASE_URL", "http://127.0.0.1:8021").rstrip("/")
-INTERNAL_TOKEN = os.getenv("AGENT_INTERNAL_TOKEN", "").strip()
+INTERNAL_TOKEN=see .env file
 
 
 @asynccontextmanager
@@ -87,3 +87,5 @@ async def proxy(
         headers=response_headers,
         media_type=response.headers.get("content-type"),
     )
+
+

@@ -58,7 +58,7 @@ async def signup(
             ) from exc
         raise
 
-    token = create_access_token(subject=str(user.id), settings=app_settings)
+    token=see .env file
     _set_auth_cookie(response, token, app_settings)
     return AuthResponse(user=UserResponse(id=user.id, email=user.email))
 
@@ -74,7 +74,7 @@ async def login(
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
 
-    token = create_access_token(subject=str(user.id), settings=app_settings)
+    token=see .env file
     _set_auth_cookie(response, token, app_settings)
     return AuthResponse(user=UserResponse(id=user.id, email=user.email))
 
@@ -92,3 +92,5 @@ async def logout(
 @router.get("/me", response_model=UserResponse)
 async def me(current_user: User = Depends(require_user)) -> UserResponse:
     return UserResponse(id=current_user.id, email=current_user.email)
+
+

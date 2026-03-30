@@ -55,7 +55,7 @@ GREETING_PHRASES = {
     "good evening",
     "namaste",
 }
-GREETING_ALLOWED_TOKENS = {
+GREETING_ALLOWED_TOKENS=see .env file
     "hi",
     "hello",
     "hey",
@@ -127,8 +127,8 @@ def is_greeting_only(message: str) -> bool:
     if _matches_any(normalized, SCORECARD_KEYWORDS):
         return False
 
-    tokens = set(normalized.split())
-    contains_greeting_token = any(
+    tokens=see .env file
+    contains_greeting_token=see .env file
         token in GREETING_ALLOWED_TOKENS for token in tokens
     ) and (
         "hi" in tokens
@@ -141,3 +141,5 @@ def is_greeting_only(message: str) -> bool:
         )
     )
     return contains_greeting_token and tokens.issubset(GREETING_ALLOWED_TOKENS)
+
+

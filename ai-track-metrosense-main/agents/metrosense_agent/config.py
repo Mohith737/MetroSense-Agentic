@@ -21,12 +21,14 @@ class AgentSettings:
 def get_settings() -> AgentSettings:
     model = os.getenv("AGENT_MODEL", "gemini-2.5-flash").strip() or "gemini-2.5-flash"
     backend_internal_url = os.getenv("BACKEND_INTERNAL_URL", "").strip()
-    agent_internal_token = os.getenv("AGENT_INTERNAL_TOKEN", "").strip()
+    agent_internal_token=see .env file
     documents_path = os.getenv("DOCUMENTS_PATH", "").strip()
 
     return AgentSettings(
         model=model,
         backend_internal_url=backend_internal_url,
-        agent_internal_token=agent_internal_token,
+        agent_internal_token=see .env file
         documents_path=documents_path,
     )
+
+

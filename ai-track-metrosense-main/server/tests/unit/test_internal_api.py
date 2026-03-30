@@ -18,7 +18,7 @@ def internal_overrides() -> Generator[None, None, None]:
 
     app.dependency_overrides[db_session] = _db_override
     app.dependency_overrides[settings] = lambda: Settings(
-        agent_internal_token="test-internal-token"
+        agent_internal_token=see .env file
     )
     yield
     app.dependency_overrides.pop(db_session, None)
@@ -70,3 +70,5 @@ async def test_internal_query_validation(client: AsyncClient, internal_overrides
         headers={"X-Internal-Token": "test-internal-token"},
     )
     assert response.status_code == 422
+
+

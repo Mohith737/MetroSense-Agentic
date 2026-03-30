@@ -16,7 +16,7 @@ def _backend_base_url() -> str | None:
 
 
 def _internal_token() -> str | None:
-    token = os.getenv("AGENT_INTERNAL_TOKEN", "").strip()
+    token=see .env file
     if not token:
         return None
     return token
@@ -24,7 +24,7 @@ def _internal_token() -> str | None:
 
 async def backend_get(path: str, params: dict[str, Any] | None = None) -> ToolResult:
     base_url = _backend_base_url()
-    token = _internal_token()
+    token=see .env file
     if not base_url or not token:
         return failure_result(
             source="backend",
@@ -97,3 +97,5 @@ async def backend_get(path: str, params: dict[str, Any] | None = None) -> ToolRe
             )
 
     return success_result(payload, source="backend")
+
+

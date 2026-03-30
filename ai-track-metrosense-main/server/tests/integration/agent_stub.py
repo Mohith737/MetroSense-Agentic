@@ -49,8 +49,10 @@ async def run_agent(
 
 
 def _require_token(header_value: str | None) -> None:
-    internal_token = os.getenv("AGENT_INTERNAL_TOKEN", "").strip()
+    internal_token=see .env file
     if not internal_token:
         raise RuntimeError("AGENT_INTERNAL_TOKEN must be set for agent stub")
     if header_value != internal_token:
         raise HTTPException(status_code=401, detail="Invalid internal token")
+
+

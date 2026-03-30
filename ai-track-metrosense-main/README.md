@@ -105,7 +105,7 @@ docker-compose up -d db
 cd server
 uv sync --all-extras
 uv run alembic upgrade head
-export AGENT_INTERNAL_TOKEN=dev-internal-token
+export AGENT_INTERNAL_TOKEN=see .env file
 uv run uvicorn app.main:app --reload --port 8010
 
 # (One-time) Seed domain data
@@ -114,15 +114,15 @@ uv run python scripts/load_metrosense_dataset.py --replace
 # ADK agent server — separate terminal
 cd agents
 uv sync
-export GOOGLE_API_KEY=your_key
-export AGENT_INTERNAL_TOKEN=dev-internal-token
+export GOOGLE_API_KEY=see .env file
+export AGENT_INTERNAL_TOKEN=see .env file
 export BACKEND_INTERNAL_URL=http://localhost:8010
 export DOCUMENTS_PATH=../server/Documents_Metrosense
 uv run adk api_server --host 0.0.0.0 --port 8021 .
 
 # Agents proxy — separate terminal
 cd agents
-export AGENT_INTERNAL_TOKEN=dev-internal-token
+export AGENT_INTERNAL_TOKEN=see .env file
 uv run uvicorn app.proxy:app --host 0.0.0.0 --port 8020
 
 # Optional: ADK Web UI
@@ -274,3 +274,5 @@ docker build -t metrosense .
 - TypeScript: strict mode, `PascalCase` components, `camelCase` utilities
 - Backend layering: Routes → Services → DB (enforced)
 - Conventional Commits: `feat:`, `fix:`, `refactor:`
+
+

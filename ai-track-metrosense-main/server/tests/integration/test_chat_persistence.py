@@ -13,7 +13,7 @@ async def test_chat_persists_session_and_turn_history(
     client: AsyncClient, db: AsyncSession
 ) -> None:
     email = "persist@example.com"
-    password = "password123"
+    password=see .env file
     session_id = "persist-session"
 
     signup = await client.post("/api/auth/signup", json={"email": email, "password": password})
@@ -68,3 +68,5 @@ async def test_chat_persists_session_and_turn_history(
     assert {row.message for row in user_rows} == {"hello first turn", "hello second turn"}
     assert all(row.message == "Stubbed response from agent." for row in assistant_rows)
     assert all(row.latency_ms is not None for row in assistant_rows)
+
+

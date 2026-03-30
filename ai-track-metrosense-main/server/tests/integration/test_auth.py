@@ -11,7 +11,7 @@ from app.db.models import User
 @pytest.mark.asyncio
 async def test_auth_chat_logout_flow(client: AsyncClient, db: AsyncSession) -> None:
     email = "integration@example.com"
-    password = "password123"
+    password=see .env file
 
     signup = await client.post("/api/auth/signup", json={"email": email, "password": password})
     assert signup.status_code == 201
@@ -35,9 +35,11 @@ async def test_auth_chat_logout_flow(client: AsyncClient, db: AsyncSession) -> N
 @pytest.mark.asyncio
 async def test_login_flow(client: AsyncClient) -> None:
     email = "loginflow@example.com"
-    password = "password123"
+    password=see .env file
 
     await client.post("/api/auth/signup", json={"email": email, "password": password})
     login = await client.post("/api/auth/login", json={"email": email, "password": password})
     assert login.status_code == 200
     assert login.json()["user"]["email"] == email
+
+

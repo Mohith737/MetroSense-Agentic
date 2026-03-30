@@ -387,7 +387,7 @@ Single `httpx.AsyncClient`-based module. Reads `BACKEND_INTERNAL_URL` and `AGENT
 
 ```python
 BACKEND_URL = os.getenv("BACKEND_INTERNAL_URL", "http://localhost:8010")
-INTERNAL_TOKEN = os.getenv("AGENT_INTERNAL_TOKEN", "")
+INTERNAL_TOKEN=see .env file
 
 async def _get(path: str, params: dict) -> list[dict] | dict | None:
     """Single internal HTTP GET with token auth. Raises on non-2xx."""
@@ -605,9 +605,9 @@ No new variables needed — the backend already has `AGENT_INTERNAL_TOKEN`. The 
 ```
 BACKEND_INTERNAL_URL=http://localhost:8010    # or http://server:8010 in Docker
 DOCUMENTS_PATH=/documents                     # mounted volume path
-AGENT_INTERNAL_TOKEN=dev-internal-token       # same as backend
+AGENT_INTERNAL_TOKEN=see .env file
 AGENT_MODEL=gemini-2.5-flash
-GOOGLE_API_KEY=<your_key>
+GOOGLE_API_KEY=see .env file
 ```
 
 ### Docker Compose changes (agents service)
@@ -729,3 +729,5 @@ Execute in this order. Each step is independently testable before moving to the 
 | Documents volume not mounted in dev | `DOCUMENTS_PATH` defaults to a local path; document tools return empty list gracefully on `FileNotFoundError` |
 | DB write fails after ADK response | Best-effort persistence — log error, return response to user regardless |
 | `conversation_history` → `sessions` FK violation on first turn | `upsert_session` runs before `append_turn` in the flow |
+
+
