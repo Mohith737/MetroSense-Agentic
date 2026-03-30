@@ -97,9 +97,9 @@
 - Local startup today:
   - The agents service runs behind a lightweight proxy that enforces the `X-Internal-Token` shared secret. The backend calls the proxy on port 8020, and the proxy forwards to the ADK server on port 8021. `/health` stays public for simple availability checks.
   - `docker-compose up -d db`
-  - `cd server && export AGENT_INTERNAL_TOKEN=dev-internal-token && uv run alembic upgrade head && uv run uvicorn app.main:app --reload --port 8010`
-  - `cd agents && export AGENT_INTERNAL_TOKEN=dev-internal-token && uv run adk api_server --host 0.0.0.0 --port 8021 .`
-  - `cd agents && export AGENT_INTERNAL_TOKEN=dev-internal-token && uv run uvicorn app.proxy:app --host 0.0.0.0 --port 8020`
+  - `cd server && export AGENT_INTERNAL_TOKEN=your-internal-token-here && uv run alembic upgrade head && uv run uvicorn app.main:app --reload --port 8010`
+  - `cd agents && export AGENT_INTERNAL_TOKEN=your-internal-token-here && uv run adk api_server --host 0.0.0.0 --port 8021 .`
+  - `cd agents && export AGENT_INTERNAL_TOKEN=your-internal-token-here && uv run uvicorn app.proxy:app --host 0.0.0.0 --port 8020`
   - `cd agents && uv run adk web --port 8001` (optional UI)
   - `cd client && pnpm install && pnpm run dev`
 - When expanding `agents/`, keep startup and validation commands updated in this file.

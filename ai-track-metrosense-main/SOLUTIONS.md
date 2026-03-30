@@ -428,7 +428,7 @@ async def backend_get(
 
 **Configuration** (environment variables):
 - `BACKEND_INTERNAL_URL` — e.g., `http://localhost:8010`
-- `AGENT_INTERNAL_TOKEN` — shared secret (e.g., `dev-internal-token`)
+- `AGENT_INTERNAL_TOKEN` — shared secret (e.g., `your-internal-token-here`)
 
 **Error Handling**:
 - **Timeout (10s)** → `BACKEND_TIMEOUT`
@@ -1163,7 +1163,7 @@ if await session_owner_id(db_session, payload.session_id) != current_user.id:
   if not token or token != settings.agent_internal_token:
       raise HTTPException(status_code=401, detail="Unauthorized")
   ```
-- Value: Environment variable set at startup (e.g., `dev-internal-token` in dev, cryptic string in prod)
+- Value: Environment variable set at startup (e.g., `your-internal-token-here` in dev, cryptic string in prod)
 
 **Agent ↔ Backend Communication**:
 - Method: Same `X-Internal-Token` in `backend_client.py`
@@ -1295,7 +1295,7 @@ services:
     environment:
       DATABASE_URL: postgresql+asyncpg://metrosense:secret@db:5432/metrosense
       AGENT_INTERNAL_URL: http://agent-proxy:8020
-      AGENT_INTERNAL_TOKEN: dev-internal-token
+      AGENT_INTERNAL_TOKEN: your-internal-token-here
       SECRET_KEY: dev-secret
     ports:
       - "8010:8000"
@@ -1307,7 +1307,7 @@ services:
     command: adk api_server --host 0.0.0.0 --port 8021
     environment:
       BACKEND_INTERNAL_URL: http://backend:8000
-      AGENT_INTERNAL_TOKEN: dev-internal-token
+      AGENT_INTERNAL_TOKEN: your-internal-token-here
       GOOGLE_API_KEY: ${GOOGLE_API_KEY}
     ports:
       - "8021:8021"
@@ -1316,7 +1316,7 @@ services:
     build: ./agents
     command: uvicorn app.proxy:app --host 0.0.0.0 --port 8020
     environment:
-      AGENT_INTERNAL_TOKEN: dev-internal-token
+      AGENT_INTERNAL_TOKEN: your-internal-token-here
     ports:
       - "8020:8020"
     depends_on:
