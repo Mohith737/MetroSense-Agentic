@@ -1,0 +1,27 @@
+node_modules/
+__pycache__/
+*.pyc
+*.db
+.env
+.venv/
+dist/
+.DS_Store
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+*.egg-info/
+htmlcov/
+.coverage
+
+export_session_md.py
+
+# Local Codex/agent skills (user-specific)
+.codex/skills/
+.agents/skills/
+skills-lock.json
+
+server/DataSet_MetroSense
+server/Documents_Metrosense
+docs/Files/*
+
+agents/metrosense_agent/.adk/eval_history/*

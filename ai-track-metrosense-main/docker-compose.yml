@@ -1,0 +1,48 @@
+name: ai-track-metrosense
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: app_scaffold
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: ./server
+    environment:
+      ENV: development
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/app_scaffold
+      AGENT_INTERNAL_TOKEN: ${AGENT_INTERNAL_TOKEN}
+      AGENT_SERVER_URL: http://agents:8020
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  client:
+    build: ./client
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+  agents:
+    build: ./agents
+    environment:
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      GOOGLE_GENAI_USE_VERTEXAI: ${GOOGLE_GENAI_USE_VERTEXAI:-false}
+      AGENT_MODEL: ${AGENT_MODEL:-gemini-2.5-flash}
+      AGENT_INTERNAL_TOKEN: ${AGENT_INTERNAL_TOKEN}
+      BACKEND_INTERNAL_URL: http://api:8000
+      DOCUMENTS_PATH: /app/Documents_Metrosense
+      ADK_BASE_URL: http://127.0.0.1:8021
+    ports:
+      - "8020:8020"
+      - "8021:8021"
+
+volumes:
+  postgres_data:
