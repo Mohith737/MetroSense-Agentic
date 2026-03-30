@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=SERVER_DIR / ".env", extra="ignore")
 
     env: Literal["development", "test", "production"] = "development"
-    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5433/app_scaffold"
+    database_url: str = "postgresql+asyncpg://db_user:db_password@localhost:5433/app_scaffold"
     agent_server_url: str = "http://agents:8020"
     agent_app_name: str = "metrosense_agent"
     agent_internal_token: str = ""

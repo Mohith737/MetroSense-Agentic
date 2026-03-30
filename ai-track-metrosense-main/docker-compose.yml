@@ -16,7 +16,7 @@ services:
     build: ./server
     environment:
       ENV: development
-      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/app_scaffold
+      DATABASE_URL: postgresql+asyncpg://db_user:db_password@db:5432/app_scaffold
       AGENT_INTERNAL_TOKEN: ${AGENT_INTERNAL_TOKEN}
       AGENT_SERVER_URL: http://agents:8020
     ports:

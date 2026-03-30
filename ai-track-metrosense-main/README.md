@@ -211,7 +211,7 @@ For the implemented Postgres schema + CSV loader for MetroSense golden data, see
 | Variable | Default | Description |
 |----------|---------|-------------||
 | `ENV` | `development` | development / test / production |
-| `DATABASE_URL` | `postgresql+asyncpg://postgres:postgres@localhost:5433/app_scaffold` | Database connection |
+| `DATABASE_URL` | `postgresql+asyncpg://db_user:db_password@localhost:5433/app_scaffold` | Database connection |
 | `JWT_SECRET` | `change-me` | JWT signing secret (must be overridden in production — minimum 32 bytes) |
 | `JWT_ALGORITHM` | `HS256` | JWT algorithm |
 | `JWT_EXPIRES_MINUTES` | `60` | JWT expiration in minutes |

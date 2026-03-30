@@ -75,7 +75,7 @@ await runAndWait("uv", ["run", "alembic", "upgrade", "head"], {
   cwd: serverDir,
   env: {
     ...process.env,
-    DATABASE_URL: "postgresql+asyncpg://postgres:postgres@localhost:5433/app_scaffold",
+    DATABASE_URL: "postgresql+asyncpg://db_user:db_password@localhost:5433/app_scaffold",
   },
 });
 
@@ -84,7 +84,7 @@ run("uv", ["run", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "1
   env: {
     ...process.env,
     ENV: "development",
-    DATABASE_URL: "postgresql+asyncpg://postgres:postgres@localhost:5433/app_scaffold",
+    DATABASE_URL: "postgresql+asyncpg://db_user:db_password@localhost:5433/app_scaffold",
     AGENT_SERVER_URL: "http://127.0.0.1:18020",
     AGENT_APP_NAME: "metrosearch_agent",
     JWT_SECRET: "test-secret-at-least-32-bytes-long",
